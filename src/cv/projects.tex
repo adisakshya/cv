@@ -1,0 +1,119 @@
+%-------------------------------------------------------------------------------
+%	SECTION TITLE
+%-------------------------------------------------------------------------------
+\cvsection{Projects}
+
+
+%-------------------------------------------------------------------------------
+%	CONTENT
+%-------------------------------------------------------------------------------
+\begin{cventries}
+
+% %---------------------------------------------------------
+%   \cventry
+%     {Python, Keras, Tensorflow, Flask, Docker} % Job title
+%     {Optical Character Recognition} % Organization
+%     {} % Date(s)
+%     {Fall 2019} % Location
+%     {
+%       \begin{cvitems} % Description(s) of tasks/responsibilities
+%         \item {Developed an OCR for transcribing text contained in images of typed, handwritten or printed text into machine-encoded text, whether from a scanned document, a photo of a document, a scene-photo or from subtitle text superimposed on an image.}
+%         \item {The model segments the into characters and then these segmented-characters are passed through CNN to recognize and finally arrange the recognized-characters to reproduce the text seen in the image.}
+%         \item {CNN is implemented using Keras and Tensorflow, and the complete OCR is made available as an API built using Flask and containerised using Docker.}
+%         \item {Developed containerized REST API for implementing the OCR model as a RESTful object using Flask and Docker.}
+%         \item {Established fully automated CI/CD pipeline for the API using Github Actions.}
+%       \end{cvitems}
+%     }
+
+% %---------------------------------------------------------
+%   \cventry
+%     {Python, OpenCV} % Job title
+%     {Color Detection and Segmentation} % Organization
+%     {} % Date(s)
+%     {Spring 2019} % Location
+%     {
+%       \begin{cvitems} % Description(s) of tasks/responsibilities
+%         \item {The algorithm is very similar in principle to green screening, but here the foreground is tweaked instead for the background and the outcome is presented as an effect of invisibility behind a particular color.}
+%         \item {The color space of the image is transformed from RGB (Red-Green-Blue) to HSV (Hue–Saturation–Value), then detection of a color in the image is done by selecting the hue component, then depending on the saturation component different shades of that color are obtained and further depending on the value component different intensities of a particular shade of that color is generated.}
+%         \item {Finally a mask is generated to determine the region in the frame corresponding to the detected color.}
+%         \item {This mask is refined and use for segmenting out the detected color and the pixel values of the detected color region are replaced with the corresponding pixel values of the static background and finally an augmented output is generated which creates the magical effect of invisibility.}
+%       \end{cvitems}
+%     }
+    
+%---------------------------------------------------------
+%   \cventry
+%     {Javascript, Python, NodeJS, Keras, Flask, Docker, MongoDB, Github Actions} % Job title
+%     {AgriTech} % Organization
+%     {} % Date(s)
+%     {Jan. 2020} % Location
+%     {
+%       \begin{cvitems} % Description(s) of tasks/responsibilities
+%         \item {Provisioned an easily manageable architecture by implementing backend services as REST APIs running as microservices.}
+%         \item {Built fully automated CI/CD pipelines on Github Actions for containerized microservices.}
+%         \item {Designed overall service architecture for machine learning based automated quality assurance with the micro-services architecture.}
+%         \item {Developed fruits and vegetables image-classifier for validating images from clients on the platform.}
+%         \item {Implemented WhatsApp API using puppeteer and headless chromium to enable clients post to the platform using WhatsApp.}
+%       \end{cvitems}
+%     }
+
+%---------------------------------------------------------
+  \cventry
+    {Ansible, Jenkins, Kubernetes, AWS, Elasticsearch, Logstash, Kibana, Docker, Nginx, PostgreSQL, Tensorflow} % Job title
+    {Continuous Improvement} % Organization
+    {} % Date(s)
+    {Summer 2020} % Location
+    {
+      \begin{cvitems} % Description(s) of tasks/responsibilities
+        \item {Implementing a fully-automated CI/CD pipeline for a microservices architecture using Ansible, Jenkins and Kubernetes.}
+        \item {Configuring distributed CI builds using Jenkins master-agent architecture, deployed on Kubernetes.}
+        \item {Setting up a monitoring system using ELK stack for various microservice API, database and machine-learning models implemented as REST APIs.}
+        \item {Managing resource provisioning on cloud using process of Infrastructure as Code.}
+      \end{cvitems}
+    }
+
+%---------------------------------------------------------
+  \cventry
+    {Javascript, NodeJS, ExpressJS, Docker, Nginx, MongoDB, Github Actions} % Job title
+    {Custom URL Shortner Service} % Organization
+    {} % Date(s)
+    {Spring 2020} % Location
+    {
+      \begin{cvitems} % Description(s) of tasks/responsibilities
+        \item {A custom URL shortner service implemented as a REST API available as an independent microservice ready to be deployed under a custom short domain name.}
+        \item {NodeJS power the REST API, that serves the request for handling the short URLs and interaction with the database.}
+        \item {Nginx handles the rewrite rules that take care of the redirection part of the URL shortner.}
+        \item {Test scripts for the API are written using Jest testing framework, used to perform end-point and unit testing.}
+      \end{cvitems}
+    }
+
+%---------------------------------------------------------
+  \cventry
+    {Python, Matplotlib (Data Visualization), Jupyter Notebook} % Job title
+    {Time Series Analysis} % Organization
+    {} % Date(s)
+    {Fall 2019} % Location
+    {
+      \begin{cvitems} % Description(s) of tasks/responsibilities
+        \item {Implemented the powerful Auto Regressive Integrated Moving Average (ARIMA) model, that help understand and predict the behavior of dynamic-systems from experimental or observational data.}
+        \item {This project explains a given time series based on its own past values, that is, its own lags and the lagged forecast errors, so that equation can be used to forecast future values.}
+        \item {This project provide forecast on number of air passengers and can be extended to be used for more non-stationary data-sets like economic, weather, stock-price, retail sales, biological systems.}
+      \end{cvitems}
+    }
+
+%---------------------------------------------------------
+  \cventry
+    {Python, Tensorflow, Natural Language Processing, AIML, Speech-to-text, Text-to-speech} % Job title
+    {F.R.I.D.A.Y} % Organization
+    {} % Date(s)
+    {Fall 2019} % Location
+    {
+      \begin{cvitems} % Description(s) of tasks/responsibilities
+        \item {Inspired from MCU, Female Replacement Intelligent Digital Assistant Youth (F.R.I.D.A.Y) is designed as a personal assistant.}
+        \item {Capable of performing system-level tasks like reporting system information, memory utilization, performance statistics, send system into hibernate/shutdown/sleep mode, taking screenshots on screen, answer what's near-me queries, provides live weather information on users current location.}
+        \item {Able to understands text as well as speech inputs, powered by a natural language processing.}
+        \item {Fallback code is written using AIML v1.0.1.}
+      \end{cvitems}
+    }
+
+%---------------------------------------------------------
+\end{cventries}

@@ -1,0 +1,17 @@
+dist: xenial
+language: bash
+
+before_install:
+  - sudo apt-get -qq update
+
+install:
+  - sudo apt-get install -y texlive-base texlive-latex-base texlive-latex-extra texlive-fonts-recommended texlive-fonts-extra
+
+script:
+  - echo "[TODO] Build script"
+
+after_script:
+  - echo "[TODO] After build script"
+
+after_success:
+  - echo "[TODO] After build script success"

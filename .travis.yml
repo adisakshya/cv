@@ -10,11 +10,17 @@ install:
 script:
   - echo "Building PDF for CV"
   - cd src
+  - mkdir _build
   - xelatex cv.tex \cv
-  - ls
+  - ls -l
+  - if [ ! -f "cv.pdf" ]; then echo "CV PDF not found"; exit 1; fi
+  - cp cv.pdf _build/Adisakshya_Chauhan_CV.pdf 
 
-after_script:
-  - echo "[TODO] After build script"
-
-after_success:
-  - echo "[TODO] After build script success"
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  keep_history: true
+  local_dir: src/_build
+  on:
+    branch: ci-cd

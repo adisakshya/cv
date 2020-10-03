@@ -5,10 +5,13 @@ before_install:
   - sudo apt-get -qq update
 
 install:
-  - sudo apt-get install -y texlive-base texlive-latex-base texlive-latex-extra texlive-fonts-recommended texlive-fonts-extra
+  - sudo apt-get install -y texlive-full
 
 script:
-  - echo "[TODO] Build script"
+  - echo "Building PDF for CV"
+  - cd src
+  - xelatex cv.tex \cv
+  - ls
 
 after_script:
   - echo "[TODO] After build script"

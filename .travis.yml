@@ -24,3 +24,14 @@ deploy:
   local_dir: src/_build
   on:
     branch: ci-cd
+
+notifications:
+  email: false
+  slack: 
+    rooms:
+      secure: ZpwA4YTHqqdApMppPeXE2/qhXoHoQ8+ByzbMRk0wZEIMiKWISCnMGoapX0H12ZTO9cmT3Kd8AmPdSPUDuXEpgzm3cS3gpiYs0KPxDAleJJXlREYYl0BqzlH0Gnfilhh0ZG58fqB9EMLLoHcqFPuAp1zP3gsztLrkHIswES9uXNpJym+J9N5uVHgBrUC4kGkobcak4rpJhXZrXgFPI6Sbkp+2wexcg0OMgeQvDhb1zlIge7WE5qQ17dlR2pqD37Rn8z5SYeI7D3GBOzzrFZuqQPWnSVMRxxPEKG15Nc9Df3M5tZ+K708qe2gYuWaCLuWD6cAEToKRSwZqBdhe+mKa1Vf3pS9Xm8cMU46HydDGiOM0CM8H1+JusPtxGYfkaK3X+re868eUk/+NsnchY2AWpeQYJT1SqpwTf/Y2oEHJslv/KUTVnZrMBy1UV/ubTGXHfwdqs8tiBGfaS7J9B8o3N6OBRia6RAtjr7pwi2v/1+y+xP2R9pjuriyNB9oayfOFoFPjT5zfePNIE2con3Eb6se8zOjUMG0q20npkyLJQE9j1FfbueKS9pwlEebiL4dmfnUaeKtILCvxIysVmII6/8uMGmV8uXeS5aSvsL0D8VY7JTBcFT2vhvsIiahVBL1ZCpvNnLljGXbSpLFR+W0DVstaElKvC1s8+oGrzyi305I=
+    template:
+      - "`%{repository_slug}` \n*%{result}* build (<%{build_url}|#%{build_number}>) by %{author} for commit (<%{compare_url}|%{commit}>) on branch `%{branch}`."
+      - "Duration: *%{duration}*"
+      - "Message: %{message}"
+      - "CV: https://adisakshya.github.io/cv/Adisakshya_Chauhan_CV.pdf"

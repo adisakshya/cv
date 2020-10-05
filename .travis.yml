@@ -23,7 +23,7 @@ deploy:
   keep_history: true
   local_dir: src/_build
   on:
-    branch: ci-cd
+    branch: master
 
 notifications:
   email: false

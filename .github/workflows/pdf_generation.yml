@@ -35,10 +35,14 @@ jobs:
           cd public
           ls -la
           echo "🍏 This job's status is ${{ job.status }}."
+  Deploy-to-GitHub-Pages :
+    needs: Build-PDF
+    runs-on: ubuntu-latest
+    steps:
       - name: Deploy to GitHub Pages
         uses: crazy-max/ghaction-github-pages@v4
-        with:
+        with: 
           target_branch: gh-pages
-          build_dir: public
+          build_dir: src/public
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

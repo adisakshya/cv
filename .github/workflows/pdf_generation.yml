@@ -1,29 +1,42 @@
 name: PDF Gneration
 run-name: Generating PDF Document
 on: [push]
+
+permissions: 
+  contents: write
+
 jobs:
-  Explore-GitHub-Actions:
+  Build-PDF:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
-      - run: echo "🔎 The name of branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
-      - name: Check out repository code
-        uses: actions/checkout@v4
-      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
-      - run: echo "🖥️ The workflow is now ready to generate PDF document."
+      - name: Start
+        run: |
+          echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
+          echo "🔎 The name of branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+      - name: Checkout
+        uses: actions/checkout@v3
       - name: List files in the repository
         run: |
           ls ${{ github.workspace }}
-      - run: echo "Installing required packages"
-      - run: sudo apt-get -qq update
-      - run: sudo apt-get install -y texlive-full
-      - run: echo "Installaion of required packages complete"
-      - run: echo "Generating PDF"
-      - run: cd src
-      - run: mkdir _build
-      - run: ls -l
-      - run: xelatex cv.tex \cv
-      - run: ls -l
-      - run: if [ ! -f "cv.pdf" ]; then echo "CV PDF not found"; exit 1; fi
-      - run: cp cv.pdf _build/Adisakshya_Chauhan_CV.pdf 
-      - run: echo "🍏 This job's status is ${{ job.status }}."
+      - name: Build Environment Setup
+        run: |
+          sudo apt-get -qq update
+          sudo apt-get install -y texlive-full
+          echo "Installaion of required packages complete"
+      - name: Generate PDF
+        run: |
+          cd src
+          mkdir _build
+          ls -la
+          xelatex cv.tex \cv
+          ls -la
+          if [ ! -f "cv.pdf" ]; then echo "CV PDF not found"; exit 1; fi
+          cp cv.pdf _build/Adisakshya_Chauhan_CV.pdf 
+          echo "🍏 This job's status is ${{ job.status }}."
+      - name: Deploy to GitHub Pages
+        uses: crazy-max/ghaction-github-pages@v4
+        with:
+          target_branch: gh-pages
+          build_dir: _build
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

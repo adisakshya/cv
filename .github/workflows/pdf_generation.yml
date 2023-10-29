@@ -6,44 +6,35 @@ permissions:
   contents: write
 
 jobs:
-  Deploy-to-GitHub-Pages:
-    #needs: Build-PDF
+  Build-PDF:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout
-      uses: actions/checkout@v3
-    - name: Check existence of artifacts
-      run: |
-        ls -la
-    - name: Deploy to GitHub Pages 🚀
-      uses: JamesIves/github-pages-deploy-action@v4
-      with:
-        folder: src/public
-  #Build-PDF:
-  #  runs-on: ubuntu-latest
-  #  steps:
-  #    - name: Start
-  #      run: |
-  #        echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
-  #        echo "🔎 The name of branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
-  #    - name: Checkout
-  #      uses: actions/checkout@v3
-  #    - name: List files in the repository
-  #      run: |
-  #        ls ${{ github.workspace }}
-  #    - name: Build Environment Setup
-  #      run: |
-  #        sudo apt-get -qq update
-  #        sudo apt-get install -y texlive-full
-  #    - name: Generate PDF
-  #      run: |
-  #        cd src
-  #        mkdir public
-  #        ls -la
-  #        xelatex cv.tex \cv
-  #        ls -la
-  #        if [ ! -f "cv.pdf" ]; then echo "CV PDF not found"; exit 1; fi
-  #        cp ./cv.pdf ./public/Adisakshya_Chauhan_CV.pdf 
-  #        cd public
-  #        ls -la
-  #        echo "🍏 This job's status is ${{ job.status }}."
+      - name: Start
+        run: |
+          echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
+          echo "🔎 The name of branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: List files in the repository
+        run: |
+          ls ${{ github.workspace }}
+      - name: Build Environment Setup 🏗️
+        run: |
+          sudo apt-get -qq update
+          sudo apt-get install -y texlive-full
+      - name: Generate PDF 📜
+        run: |
+          cd src
+          mkdir public
+          ls -la
+          xelatex cv.tex \cv
+          ls -la
+          if [ ! -f "cv.pdf" ]; then echo "CV PDF not found"; exit 1; fi
+          cp ./cv.pdf ./public/Adisakshya_Chauhan_CV.pdf 
+          cd public
+          ls -la
+          echo "🍏 This job's status is ${{ job.status }}."
+      - name: Push to GitHub Pages 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: src/public

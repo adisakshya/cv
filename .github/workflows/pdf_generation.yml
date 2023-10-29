@@ -1,15 +1,15 @@
 name: PDF Generation
 run-name: Generating PDF Document
-on:
-  push:
-    branches:
-      - master
+on: [push]
+#  push:
+#    branches:
+#      - master
 
 permissions: 
   contents: write
 
 jobs:
-  Prepare-CV:
+  Build-and-Deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Start
@@ -25,18 +25,29 @@ jobs:
         run: |
           sudo apt-get -qq update
           sudo apt-get install -y texlive-full
-      - name: Generate PDF 📜
+      - name: Create artifact directory
+        run: mkdir public
+      - name: Generate Resume PDF 📜
         run: |
-          cd src
+          cd src/resume/
+          ls -la
+          xelatex resume.tex \resume
+          ls -la
+          if [ ! -f "resume.pdf" ]; then echo "Resume PDF not found"; exit 1; fi
+          cp ./resume.pdf ../../public/Adisakshya_Chauhan_Resume.pdf 
+          cd ../../public
+          ls -la
+      - name: Generate CV PDF 📜
+        run: |
+          cd src/cv/
           mkdir public
           ls -la
           xelatex cv.tex \cv
           ls -la
           if [ ! -f "cv.pdf" ]; then echo "CV PDF not found"; exit 1; fi
-          cp ./cv.pdf ./public/Adisakshya_Chauhan_CV.pdf 
-          cd public
+          cp ./cv.pdf ../../public/Adisakshya_Chauhan_CV.pdf 
+          cd ../../public
           ls -la
-          echo "🍏 This job's status is ${{ job.status }}."
       - name: Push to GitHub Pages 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:

@@ -6,42 +6,44 @@ permissions:
   contents: write
 
 jobs:
-  Build-PDF:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Start
-        run: |
-          echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
-          echo "🔎 The name of branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: List files in the repository
-        run: |
-          ls ${{ github.workspace }}
-      - name: Build Environment Setup
-        run: |
-          sudo apt-get -qq update
-          sudo apt-get install -y texlive-full
-      - name: Generate PDF
-        run: |
-          cd src
-          mkdir public
-          ls -la
-          xelatex cv.tex \cv
-          ls -la
-          if [ ! -f "cv.pdf" ]; then echo "CV PDF not found"; exit 1; fi
-          cp ./cv.pdf ./public/Adisakshya_Chauhan_CV.pdf 
-          cd public
-          ls -la
-          echo "🍏 This job's status is ${{ job.status }}."
   Deploy-to-GitHub-Pages:
-    needs: Build-PDF
+    #needs: Build-PDF
     runs-on: ubuntu-latest
     steps:
-      - name: Deploy to GitHub Pages
-        uses: crazy-max/ghaction-github-pages@v4
-        with: 
-          target_branch: gh-pages
-          build_dir: src/public
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Checkout
+      uses: actions/checkout@v3
+    - name: Check existence of artifacts
+      run: |
+        ls -la
+    - name: Deploy to GitHub Pages 🚀
+      uses: JamesIves/github-pages-deploy-action@v4
+      with:
+        folder: src/public
+  #Build-PDF:
+  #  runs-on: ubuntu-latest
+  #  steps:
+  #    - name: Start
+  #      run: |
+  #        echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
+  #        echo "🔎 The name of branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+  #    - name: Checkout
+  #      uses: actions/checkout@v3
+  #    - name: List files in the repository
+  #      run: |
+  #        ls ${{ github.workspace }}
+  #    - name: Build Environment Setup
+  #      run: |
+  #        sudo apt-get -qq update
+  #        sudo apt-get install -y texlive-full
+  #    - name: Generate PDF
+  #      run: |
+  #        cd src
+  #        mkdir public
+  #        ls -la
+  #        xelatex cv.tex \cv
+  #        ls -la
+  #        if [ ! -f "cv.pdf" ]; then echo "CV PDF not found"; exit 1; fi
+  #        cp ./cv.pdf ./public/Adisakshya_Chauhan_CV.pdf 
+  #        cd public
+  #        ls -la
+  #        echo "🍏 This job's status is ${{ job.status }}."

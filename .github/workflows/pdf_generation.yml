@@ -21,6 +21,7 @@ jobs:
       - run: echo "Generating PDF"
       - run: cd src
       - run: mkdir _build
+      - run: ls -l
       - run: xelatex cv.tex \cv
       - run: ls -l
       - run: if [ ! -f "cv.pdf" ]; then echo "CV PDF not found"; exit 1; fi

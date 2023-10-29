@@ -19,10 +19,9 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - name: Build Environment Setup
-        uses: awalsh128/cache-apt-pkgs-action@latest
-        with:
-          packages: texlive-full
-          version: 1.0
+        run: |
+          sudo apt-get -qq update
+          sudo apt-get install -y texlive-full
       - name: Generate PDF
         run: |
           cd src
@@ -35,7 +34,7 @@ jobs:
           cd public
           ls -la
           echo "🍏 This job's status is ${{ job.status }}."
-  Deploy-to-GitHub-Pages :
+  Deploy-to-GitHub-Pages:
     needs: Build-PDF
     runs-on: ubuntu-latest
     steps:

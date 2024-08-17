@@ -1,7 +1,7 @@
 name: PDF Generation
 run-name: Generating PDF Document
 on: [push]
-#  push:
+#  push: 
 #    branches:
 #      - master
 

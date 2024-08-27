@@ -45,7 +45,7 @@ jobs:
                     },
                     {
                       "type": "mrkdwn",
-                      "text": "*Commit*\n<${{ github.event.head_commit.url }}|${{ github.event.head_commit.id }}>"
+                      "text": "*Commit*\n<${{ github.event.head_commit.url }}|${{ github.sha.substring(0,7) }}>"
                     },
                     {
                       "type": "mrkdwn",
